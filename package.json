@@ -1,0 +1,44 @@
+{
+  "name": "colourspace",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "ColourSpace is a simple package for handling conversion between various colour formats.",
+  "author": "Symbux Dev <hello@symbux.dev> (https://symbux.dev)",
+  "license": "MIT",
+  "homepage": "https://github.com/Symbux/ColourSpace",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Symbux/ColourSpace.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Symbux/ColourSpace/issues"
+  },
+  "keywords": ["some", "keywords", "to", "describe", "the", "package"],
+  "main": "./dist/colourspace.umd.cjs",
+  "module": "./dist/colourspace.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/colourspace.js",
+      "require": "./dist/colourspace.umd.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+	"clean": "rm -rf dist"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.16",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vite-plugin-dts": "^3.7.2",
+    "vitest": "^1.2.2"
+  }
+}
