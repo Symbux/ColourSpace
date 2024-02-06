@@ -107,3 +107,8 @@ hslToRgba('hsl(0, 0%, 100%)'); // rgba(255, 255, 255, 1)
 ## Contributions
 
 Contributions and feedback are always welcome, I created this package purely to solve my immediate issue, but if it can help others then that's great, either open an issue or a PR with your changes.
+
+## Credits
+
+I used a variety of online sources (Stack Overflow, 30SecondsOfCode, Codepen authors and more) to collect the formulas for the conversions.
+This package is mostly stitching together and tweaking them to fix some edge cases I found and to make them as flexible as possible.
