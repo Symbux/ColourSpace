@@ -102,7 +102,7 @@ export class ColourSpace {
 		else if (cmax == green) hue = (blue - red) / delta + 2;
 		else hue = (red - green) / delta + 4;
 		hue = Math.round(hue * 60);
-		if (hue < 0) hue += 360;
+		// if (hue < 0) hue += 360; // Not sure this line is ever needed.
 		lightness = (cmax + cmin) / 2;
 
 		saturation = delta == 0 ? 0 : delta / (1 - Math.abs(2 * lightness - 1));

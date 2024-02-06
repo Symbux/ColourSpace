@@ -153,12 +153,14 @@ describe('Validate output expectations.', () => {
 	test('should output wrapped HSL/HSLA using other colours for completeness.', () => {
 		const instance1 = new ColourSpace('#3e2b94');
 		const instance2 = new ColourSpace('#3e2b94');
+		const instance3 = new ColourSpace('rgb(255, 255, 0)');
 		expect(instance1.toHsl()).toBe('hsl(251, 55%, 38%)');
 		expect(instance2.toHsla()).toBe('hsla(251, 55%, 38%, 1)');
+		expect(instance3.toHsl()).toBe('hsl(60, 100%, 50%)');
 	});
 });
 
-describe('Validate helper methods.', () => {
+describe('Validate constrast methods.', () => {
 	test('should return white (HEX) when given a darker colour.', () => {
 		const instance = new ColourSpace('#261245');
 		expect(instance.toContrast().toHex().toUpperCase()).toBe('#FFFFFF');
