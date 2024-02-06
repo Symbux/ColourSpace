@@ -1,6 +1,6 @@
 {
   "name": "colourspace",
-  "private": true,
+  "private": false,
   "version": "0.1.0",
   "type": "module",
   "description": "ColourSpace is a simple package for handling conversion between various colour formats.",

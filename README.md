@@ -58,3 +58,29 @@ console.log(colour1.toRgba(true)); // rgba(79, 147, 62, 0.5)
 console.log(colour1.toHsl(true)); // hsl(108, 41%, 41%)
 console.log(colour1.toHsla(true)); // hsla(108, 41%, 41%, 0.5)
 ```
+
+## Helpers
+
+There are some helpers for simpler access to the ColourSpace (that is used under the hood).
+
+```typescript
+import { hexToRgb, hexToRgba, hexToHsl, hexToHsla, rgbToHex, rgbToHexa, rgbToHsl, rgbToHsla, hslToHex, hslToHexa, hslToRgb, hslToRgba } from './colourspace';
+
+// Hex To X
+hexToRgb('#FFFFFF') // rgb(255, 255, 255)
+hexToRgba('#FFFFFF'); // rgba(255, 255, 255, 1)
+hexToHsl('#FFFFFF'); // hsl(0, 0%, 100%)
+hexToHsla('#FFFFFF'); // hsla(0, 0%, 100%, 1)
+
+// RGB To X
+rgbToHex('rgb(255, 255, 255)'); // #FFFFFF
+rgbToHexa('rgb(255, 255, 255)'); // #FFFFFF
+rgbToHsl('rgb(255, 255, 255)'); // hsl(0, 0%, 100%)
+rgbToHsla('rgb(255, 255, 255)'); // hsla(0, 0%, 100%, 1)
+
+// HSL To X
+hslToHex('hsl(0, 0%, 100%)'); // #FFFFFF
+hslToHexa('hsl(0, 0%, 100%)'); // #FFFFFF
+hslToRgb('hsl(0, 0%, 100%)'); // rgb(255, 255, 255)
+hslToRgba('hsl(0, 0%, 100%)'); // rgba(255, 255, 255, 1)
+```
