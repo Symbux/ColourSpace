@@ -103,7 +103,7 @@ describe('Validate input/accept expectations.', () => {
 	});
 
 	test('should throw an error if no valid format is provided.', () => {
-		expect(() => new ColourSpace('108 41% 41%', ('invalid' as any))).toThrow('Invalid type passed to constructor.');
+		expect(() => new ColourSpace('108 41% 41%', ('invalid' as any))).toThrow('Invalid colour format type given.');
 	});
 });
 
@@ -155,5 +155,24 @@ describe('Validate output expectations.', () => {
 		const instance2 = new ColourSpace('#3e2b94');
 		expect(instance1.toHsl()).toBe('hsl(251, 55%, 38%)');
 		expect(instance2.toHsla()).toBe('hsla(251, 55%, 38%, 1)');
+	});
+});
+
+describe('Validate helper methods.', () => {
+	test('should return white (HEX) when given a darker colour.', () => {
+		const instance = new ColourSpace('#261245');
+		expect(instance.toContrast().toHex().toUpperCase()).toBe('#FFFFFF');
+	});
+
+	test('should return black (HEX) when given a lighter colour.', () => {
+		const instance = new ColourSpace('#7ddbff');
+		expect(instance.toContrast().toHex()).toBe('#000000');
+	});
+
+	test('should return overridden colours when requesting contrast.', () => {
+		const instance1 = new ColourSpace('#7ddbff');
+		const instance2 = new ColourSpace('#261245');
+		expect(instance1.toContrast({ dark: '#2d0657', light: '#03ff17' }).toHex()).toBe('#2d0657');
+		expect(instance2.toContrast({ dark: '#2d0657', light: '#03ff17' }).toHex()).toBe('#03ff17');
 	});
 });

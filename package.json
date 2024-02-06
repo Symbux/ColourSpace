@@ -1,7 +1,7 @@
 {
   "name": "colourspace",
   "private": false,
-  "version": "0.1.2",
+  "version": "0.2.0",
   "type": "module",
   "description": "ColourSpace is a simple package for handling conversion between various colour formats.",
   "author": "Symbux Dev <hello@symbux.dev> (https://symbux.dev)",

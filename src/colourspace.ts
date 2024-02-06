@@ -14,10 +14,7 @@ export class ColourSpace {
 	 * @param type [Optional] The format of the input colour, will be guessed if not provided.
 	 */
 	public constructor(colour: string, type?: IColourSpaceType) {
-		const vtype = type ?? this.guessFormat(colour);
-		const map = this.mapping[vtype];
-		if (!map) throw new Error('Invalid type passed to constructor.');
-		this.colour = map.from(colour);
+		this.colour = this.processColour(colour, type);
 	}
 
 	/**
@@ -87,7 +84,7 @@ export class ColourSpace {
 	 */
 	public toHex(unwrap = false) {
 		const { red, green, blue } = this.colour;
-		const hex = `#${red.toString(16)}${green.toString(16)}${blue.toString(16)}`;
+		const hex = `#${this.padLeft(red.toString(16))}${this.padLeft(green.toString(16))}${this.padLeft(blue.toString(16))}`;
 		return unwrap ? hex.slice(1) : hex;
 	}
 
@@ -98,7 +95,7 @@ export class ColourSpace {
 	 */
 	public toHexa(unwrap = false) {
 		const { red, green, blue, alpha } = this.colour;
-		const hex = `#${red.toString(16)}${green.toString(16)}${blue.toString(16)}${Math.round(alpha * 255).toString(16)}`;
+		const hex = `#${this.padLeft(red.toString(16))}${this.padLeft(green.toString(16))}${this.padLeft(blue.toString(16))}${this.padLeft(Math.round(alpha * 255).toString(16))}`;
 		return unwrap ? hex.slice(1) : hex;
 	}
 
@@ -171,11 +168,39 @@ export class ColourSpace {
 	}
 
 	/**
+	 * Will convert the internal object structure to the contrast
+	 * colour for the given colour in the constructor, you can then
+	 * convert to the desired format.
+	 * @param override [Optional] The colours to use for the contrast.
+	 * @returns ColourSpace
+	 */
+	public toContrast(override?: { dark?: string; light?: string }) {
+		const { red, green, blue } = this.colour;
+		const yiq = Math.round(((red * 299) + (green * 587) + (blue * 114)) / 1000);
+		const overrideColour = yiq > 125 ? (override?.dark ?? '#000000') : (override?.light ?? '#FFFFFF');
+		this.colour = this.processColour(overrideColour);
+		return this;
+	}
+
+	/**
 	 * Simply returns the internal object structure.
 	 * @returns IColourSpaceMap
 	 */
 	public getRaw() {
 		return this.colour;
+	}
+
+	/**
+	 * Will process the given colour and convert it to the
+	 * internal object structure.
+	 * @param colour The colour string.
+	 * @param type [Optional] The format of the input colour, will be guessed if not provided.
+	 */
+	private processColour(colour: string, type?: IColourSpaceType) {
+		const vtype = type ?? this.guessFormat(colour);
+		const map = this.mapping[vtype];
+		if (!map) throw new Error('Invalid colour format type given.');
+		return map.from(colour);
 	}
 
 	/**
@@ -189,5 +214,15 @@ export class ColourSpace {
 		if (value.startsWith('rgb')) return 'rgb';
 		if (value.startsWith('hsl')) return 'hsl';
 		throw new Error('Unable to guess colour format, please define it manually.');
+	}
+
+	/**
+	 * Will pad a value with a leading zero if it's only one
+	 * in length.
+	 * @param value The value to pad.
+	 * @returns string
+	 */
+	private padLeft(value: string) {
+		return value.length === 1 ? `0${value}` : value;
 	}
 }
