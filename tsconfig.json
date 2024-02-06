@@ -5,7 +5,7 @@
 		"module": "esnext",
 		"lib": ["ES2020", "DOM", "DOM.Iterable"],
 		"skipLibCheck": true,
-		"removeComments": true,
+		"removeComments": false,
 
 		/* Bundler mode */
 		"moduleResolution": "bundler",
