@@ -20,7 +20,7 @@ yarn add colourspace
 ## Usage
 
 ```typescript
-import { ColourSpace } from 'colourspace';
+import ColourSpace from 'colourspace';
 
 // Define colours from hex formats, including alpha channel.
 const colour1 = new ColourSpace('#391bb1');
@@ -60,7 +60,20 @@ console.log(colour1.toHsl(true)); // 108, 41%, 41%
 console.log(colour1.toHsla(true)); // 108, 41%, 41%, 0.5
 ```
 
-## Helpers
+## Contrast
+
+When you have a ColourSpace instance, you can use the `toContrast` method to convert the current instance to the contrast of that colour (for text display purposes) and then you can convert that to whatever format you need.
+
+```typescript
+import ColourSpace from 'colourspace';
+
+const someColour = new ColourSpace('#391bb1');
+console.log(someColour.toContrast().toHex()); // #FFFFFF
+```
+
+> Note: The `toContrast` method will actually override the current instance with the contrast colour, so you can chain the methods together.
+
+## Functions
 
 There are some helpers for simpler access for conversions, these can accept wrapped or unwrapped values, as they have a defined input format, but they will always return wrapped values.
 
