@@ -22,7 +22,7 @@ jobs:
         with:
           cmd: test
 
-      - name: Publish coverage
+      - name: Publish coverage to codecov
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
