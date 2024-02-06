@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
@@ -10,5 +11,14 @@ export default defineConfig({
 			fileName: 'colourspace',
 		},
 	},
-	plugins: [dts()],
+	plugins: [
+		dts(),
+	],
+	test: {
+		reporters: ['verbose'],
+		coverage: {
+			provider: 'v8',
+			reporter: ['text', 'json', 'html'],
+		},
+	},
 });

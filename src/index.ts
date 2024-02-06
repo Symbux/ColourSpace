@@ -1,9 +1,18 @@
 import { ColourSpace } from './colourspace';
-import * as helpers from './helpers';
+import { hexToRgb, hexToRgba, hexToHsl, hexToHsla, rgbToHex, rgbToHexa, rgbToHsl, rgbToHsla, hslToHex, hslToHexa, hslToRgb, hslToRgba} from './helpers';
 
-const complete = {
-	...helpers,
-	ColourSpace,
+export default ColourSpace;
+export {
+	hexToRgb,
+	hexToRgba,
+	hexToHsl,
+	hexToHsla,
+	rgbToHex,
+	rgbToHexa,
+	rgbToHsl,
+	rgbToHsla,
+	hslToHex,
+	hslToHexa,
+	hslToRgb,
+	hslToRgba,
 };
-
-export default complete;

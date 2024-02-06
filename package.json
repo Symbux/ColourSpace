@@ -14,7 +14,14 @@
   "bugs": {
     "url": "https://github.com/Symbux/ColourSpace/issues"
   },
-  "keywords": ["some", "keywords", "to", "describe", "the", "package"],
+  "keywords": [
+    "some",
+    "keywords",
+    "to",
+    "describe",
+    "the",
+    "package"
+  ],
   "main": "./dist/colourspace.umd.cjs",
   "module": "./dist/colourspace.js",
   "types": "./dist/index.d.ts",
@@ -31,11 +38,12 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest",
-	"clean": "rm -rf dist"
+    "test": "vitest run --coverage",
+    "clean": "rm -rf dist"
   },
   "devDependencies": {
     "@types/node": "^20.11.16",
+    "@vitest/coverage-v8": "^1.2.2",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vite-plugin-dts": "^3.7.2",
