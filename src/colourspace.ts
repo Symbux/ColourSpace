@@ -127,9 +127,8 @@ export class ColourSpace {
 	}
 
 	/**
-	 * Will convert the internal object structure to the contrast
-	 * colour for the given colour in the constructor, you can then
-	 * convert to the desired format.
+	 * Will return a new instance of the ColourSpace class with the
+	 * contrast colour for the given colour in the constructor.
 	 * @param override [Optional] The colours to use for the contrast.
 	 * @returns ColourSpace
 	 * @public
@@ -137,9 +136,7 @@ export class ColourSpace {
 	public toContrast(override?: { dark?: string; light?: string }) {
 		const { red, green, blue } = this.colour;
 		const yiq = Math.round(((red * 299) + (green * 587) + (blue * 114)) / 1000);
-		const overrideColour = yiq > 125 ? (override?.dark ?? '#000000') : (override?.light ?? '#FFFFFF');
-		this.colour = this.processColour(overrideColour);
-		return this;
+		return new ColourSpace(yiq > 125 ? (override?.dark ?? '#000000') : (override?.light ?? '#FFFFFF'));
 	}
 
 	/**

@@ -62,7 +62,7 @@ console.log(colour1.toHsla(true)); // 108, 41%, 41%, 0.5
 
 ## Contrast
 
-When you have a ColourSpace instance, you can use the `toContrast` method to convert the current instance to the contrast of that colour (for text display purposes) and then you can convert that to whatever format you need.
+When you have a ColourSpace instance, you can use the `toContrast` method to return a new instance of the contrast for the current colour (for text display purposes) and then you can convert that to whatever format you need.
 
 ```typescript
 import ColourSpace from 'colourspace';
@@ -71,13 +71,11 @@ const someColour = new ColourSpace('#391bb1');
 console.log(someColour.toContrast().toHex()); // #FFFFFF
 ```
 
-> Note: The `toContrast` method will actually override the current instance with the contrast colour, so you can chain the methods together.
-
 ## Functions
 
 There are some helpers for simpler access for conversions, these can accept wrapped or unwrapped values, as they have a defined input format, but they will always return wrapped values.
 
-_(Will add a setting in the next version to request unwrapped versions.)_
+All of these functions have an `unwrap` parameter (default `false`) which will return the unwrapped value.
 
 ```typescript
 import {
